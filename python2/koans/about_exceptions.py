@@ -11,10 +11,10 @@ class AboutExceptions(Koan):
 
     def test_exceptions_inherit_from_exception(self):
         mro = self.MySpecialError.__mro__
-        self.assertEqual(__, mro[1].__name__)
-        self.assertEqual(__, mro[2].__name__)
-        self.assertEqual(__, mro[3].__name__)
-        self.assertEqual(__, mro[4].__name__)
+        self.assertEqual('RuntimeError', mro[1].__name__)
+        self.assertEqual('StandardError', mro[2].__name__)
+        self.assertEqual('Exception', mro[3].__name__)
+        self.assertEqual('BaseException', mro[4].__name__)
 
     def test_try_clause(self):
         result = None
@@ -23,15 +23,15 @@ class AboutExceptions(Koan):
         except StandardError as ex:
             result = 'exception handled'
 
-        self.assertEqual(__, result)
+        self.assertEqual('exception handled', result)
 
-        self.assertEqual(____, isinstance(ex, StandardError))
-        self.assertEqual(____, isinstance(ex, RuntimeError))
+        self.assertEqual(True, isinstance(ex, StandardError))
+        self.assertEqual(False, isinstance(ex, RuntimeError))
 
         self.assertTrue(issubclass(RuntimeError, StandardError), \
             "RuntimeError is a subclass of StandardError")
 
-        self.assertEqual(__, ex[0])
+        self.assertEqual("name 'fail' is not defined", ex[0])
 
     def test_raising_a_specific_error(self):
         result = None
