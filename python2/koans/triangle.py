@@ -19,12 +19,19 @@
 #
 def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
-    if a == b == c:
+    if (a == b == c == 0):
+        raise TriangleError
+    elif ((a + b < c) or (a + c < b) or (b + c < a)):
+        raise TriangleError
+    elif ((a or b or c) < 0):
+        raise TriangleError
+    elif a == b == c:
         return 'equilateral'
-    elif (a == b or a == c or b == c):
+    elif (a == b or a == c or b == c) and (a or b or c) > 0:
         return 'isosceles'
     else:
         return 'scalene'
+
     #pass
 
 
