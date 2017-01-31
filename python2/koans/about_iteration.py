@@ -14,15 +14,15 @@ class AboutIteration(Koan):
         for num in it:
             fib += num
 
-        self.assertEqual(__, fib)
+        self.assertEqual(15, fib)
 
     def test_iterating_with_next(self):
         stages = iter(['alpha', 'beta', 'gamma'])
 
         try:
-            self.assertEqual(__, next(stages))
+            self.assertEqual('alpha', next(stages))
             next(stages)
-            self.assertEqual(__, next(stages))
+            self.assertEqual('beta', next(stages))
             next(stages)
         except StopIteration as ex:
             err_msg = 'Ran out of iterations'
