@@ -19,7 +19,7 @@ class AboutGenerators(Koan):
                 n in ['crunchy', 'veggie', 'danish'])
         for bacon in bacon_generator:
             result.append(bacon)
-        self.assertEqual(__, result)
+        self.assertEqual(['crunchy bacon', 'veggie bacon', 'danish bacon'], result)
 
     def test_generators_are_different_to_list_comprehensions(self):
         num_list = [x * 2 for x in range(1, 3)]
@@ -28,7 +28,7 @@ class AboutGenerators(Koan):
         self.assertEqual(2, num_list[0])
 
         # A generator has to be iterated through.
-        self.assertEqual(__, list(num_generator)[0])
+        self.assertEqual(2, list(num_generator)[0])
 
         # Both list comprehensions and generators can be iterated
         # though. However, a generator function is only called on the
@@ -43,8 +43,8 @@ class AboutGenerators(Koan):
         attempt1 = list(dynamite)
         attempt2 = list(dynamite)
 
-        self.assertEqual(__, attempt1)
-        self.assertEqual(__, attempt2)
+        self.assertEqual(['Boom!', 'Boom!', 'Boom!'], attempt1)
+        self.assertEqual([], attempt2)
 
     # ------------------------------------------------------------------
 
@@ -58,12 +58,12 @@ class AboutGenerators(Koan):
         result = list()
         for item in self.simple_generator_method():
             result.append(item)
-        self.assertEqual(__, result)
+        self.assertEqual(['peanut', 'butter', 'and','jelly'], result)
 
     def test_generators_can_be_manually_iterated_and_closed(self):
         result = self.simple_generator_method()
-        self.assertEqual(__, next(result))
-        self.assertEqual(__, next(result))
+        self.assertEqual('peanut', next(result))
+        self.assertEqual('butter', next(result))
         result.close()
 
     # ------------------------------------------------------------------
@@ -74,7 +74,7 @@ class AboutGenerators(Koan):
 
     def test_generator_method_with_parameter(self):
         result = self.square_me(range(2, 5))
-        self.assertEqual(__, list(result))
+        self.assertEqual([4, 9, 16], list(result))
 
     # ------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ class AboutGenerators(Koan):
 
     def test_generator_keeps_track_of_local_variables(self):
         result = self.sum_it(range(2, 5))
-        self.assertEqual(__, list(result))
+        self.assertEqual([2, 5, 9], list(result))
 
     # ------------------------------------------------------------------
 
