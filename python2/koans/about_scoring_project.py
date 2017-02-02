@@ -35,9 +35,13 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    one_count = 0
+    """one_count = 0
     five_count = 0
-    count = 0
+    one_count = 0
+    two_count = 0
+    three_count = 0
+    four_count = 0
+    six_count = 0
     value = 0
     if dice == []:
         return 0
@@ -58,26 +62,26 @@ def score(dice):
             if five_count == 3:
                 five_count = 10
         elif num == 2:
-            count = count + 1
-            if count == 3:
+            two_count = two_count + 1
+            if two_count == 3:
                 value = 200
             else:
                 value = 0
         elif num == 3:
-            count = count + 1
-            if count == 3:
+            three_count = three_count + 1
+            if three_count == 3:
                 value = 300
             else:
                 value = 0
         elif num == 4:
-            count = count + 1
-            if count == 3:
+            four_count = four_count + 1
+            if four_count == 3:
                 value = 400
             else:
                 value = 0
         elif num == 6:
-            count= count + 1
-            if count == 3:
+            six_count = six_count + 1
+            if six_count == 3:
                 value = 600
             else:
                 value = 0
@@ -85,7 +89,59 @@ def score(dice):
     return one_count * 100 + five_count * 50 + value
     #for num in dice:
     #    if num = 1
-    #pass
+
+
+
+    #pass"""
+    if dice == []:
+        return 0
+
+    one = 100
+    five = 50
+    two = 0
+    three = 0
+    four = 0
+    six = 0
+
+    mydict = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+    for num in dice:
+        if num == 1:
+            mydict[1] = mydict[1] + 1
+        if num == 2:
+            mydict[2] = mydict[2] + 1
+        if num == 3:
+            mydict[3] = mydict[3] + 1
+        if num == 4:
+            mydict[4] = mydict[4] + 1
+        if num == 5:
+            mydict[5] = mydict[5] + 1
+        if num == 6:
+            mydict[6] = mydict[6] + 1
+
+    count_of_one = mydict[1] - 3
+    if count_of_one >= 0:
+        one = 1000 + (count_of_one * 100)
+    else:
+        one = mydict[1] * 100
+
+    if mydict[2] >= 3:
+        two = 200
+
+    if mydict[3] >= 3:
+        three = 300
+
+    if mydict[4] >= 3:
+        four = 400
+
+    count_of_five = mydict[5] - 3
+    if count_of_five >= 0:
+        five = 500 + (count_of_five * 50)
+    else:
+        five = mydict[5] * 50
+
+    if mydict[6] >= 3:
+        six = 600
+    return (one + two + three + four + five + six)
 
 
 class AboutScoringProject(Koan):
