@@ -68,7 +68,7 @@ class AboutInheritance(Koan):
 
     def test_super_works_across_methods(self):
         george = self.GreatDane("George")
-        self.assertEqual("George, GROWL", george.growl())
+        self.assertEqual("WOOF, GROWL", george.growl())
 
     # ---------------------------------------------------------
 
@@ -85,8 +85,8 @@ class AboutInheritance(Koan):
         try:
             name = snoopy.name
         except Exception as ex:
-            self.assertMatch(__, ex[0])
+            self.assertMatch("'Pug' object has no attribute '_name'", ex[0])
 
     def test_base_init_has_to_be_called_explicitly(self):
         boxer = self.Greyhound("Boxer")
-        self.assertEqual(__, boxer.name)
+        self.assertEqual("Boxer", boxer.name)
