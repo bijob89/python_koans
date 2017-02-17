@@ -20,18 +20,18 @@ class AboutScope(Koan):
         try:
             fido = Dog()
         except Exception as ex:
-            self.assertMatch(__, ex[0])
+            self.assertMatch("name 'Dog' is not defined", ex[0])
 
     def test_you_can_reference_nested_classes_using_the_scope_operator(self):
         fido = jims.Dog()
         # name 'jims' module name is taken from jims.py filename
 
         rover = joes.Dog()
-        self.assertEqual(__, fido.identify())
-        self.assertEqual(__, rover.identify())
+        self.assertEqual("jims dog", fido.identify())
+        self.assertEqual("joes dog", rover.identify())
 
-        self.assertEqual(____, type(fido) == type(rover))
-        self.assertEqual(____, jims.Dog == joes.Dog)
+        self.assertEqual(True, type(fido) == type(rover))
+        self.assertEqual(False, jims.Dog == joes.Dog)
 
     # ------------------------------------------------------------------
 
