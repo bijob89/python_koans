@@ -126,7 +126,7 @@ class AboutAttributeAccess(Koan):
         catcher = self.RecursiveCatcher()
         catcher.my_method()
         global stack_depth
-        self.assertEqual(1, stack_depth)
+        self.assertEqual(11, stack_depth)
 
     # ------------------------------------------------------------------
 
@@ -148,17 +148,17 @@ class AboutAttributeAccess(Koan):
         catcher = self.MinimalCatcher()
         catcher.my_method()
 
-        self.assertEqual(__, catcher.no_of_getattr_calls)
+        self.assertEqual(0, catcher.no_of_getattr_calls)
 
     def test_getattr_only_catches_unknown_attributes(self):
         catcher = self.MinimalCatcher()
         catcher.purple_flamingos()
         catcher.free_pie()
 
-        self.assertEqual(__,
+        self.assertEqual('DuffObject',
             catcher.give_me_duff_or_give_me_death().__class__.__name__)
 
-        self.assertEqual(__, catcher.no_of_getattr_calls)
+        self.assertEqual(3, catcher.no_of_getattr_calls)
 
     # ------------------------------------------------------------------
 
@@ -179,13 +179,13 @@ class AboutAttributeAccess(Koan):
         fanboy.comic = 'The Laminator, issue #1'
         fanboy.pie = 'blueberry'
 
-        self.assertEqual(__, fanboy.a_pie)
+        self.assertEqual('blueberry', fanboy.a_pie)
 
         #
         # NOTE: Change the prefix to make this next assert pass
         #
 
-        prefix = '__'
+        prefix = 'my'
         self.assertEqual(
             "The Laminator, issue #1",
             getattr(fanboy, prefix + '_comic'))
@@ -209,7 +209,7 @@ class AboutAttributeAccess(Koan):
         setter = self.ScarySetter()
         setter.e = "mc hammer"
 
-        self.assertEqual(__, setter.altered_e)
+        self.assertEqual("mc hammer", setter.altered_e)
 
     def test_it_mangles_some_internal_attributes(self):
         setter = self.ScarySetter()
